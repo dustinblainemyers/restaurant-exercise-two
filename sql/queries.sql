@@ -9,7 +9,7 @@ SELECT * FROM restaurant WHERE restaurant.id = 2;
 -- List all the reviews for a given restaurant given a specific restaurant ID.
 
 
-SELECT * FROM restaurant INNER JOIN review ON review.restaurant_id = restaurant.id  order by restaurant.id;
+SELECT * FROM restaurant INNER JOIN review ON review.restaurant_id = restaurant.id  AND restaurant.id = 1 order by restaurant.id;
 
 -- List all the reviews for a given restaurant, given a specific restaurant name.
 
