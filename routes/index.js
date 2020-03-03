@@ -8,7 +8,7 @@ router.get('/', async function (req, res, next) {
 
   res.render('template', {
     locals: {
-      title: 'Express',
+      title: 'The Elite\s, a restaurant Review Site',
       data: data
     },
     partials: {

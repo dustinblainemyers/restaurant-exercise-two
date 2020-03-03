@@ -1,5 +1,8 @@
-<p> The Elite's </p>
+<p> Restaurant List</p>
 
+<ul>
 ${data.map(entry => 
-   ` <p> ${entry.name}  </p>`
+   ` <li>${entry.name} <a href="/${entry.id}">See Reviews</a>   </li>`
 ).join('')}
+
+</ul>
