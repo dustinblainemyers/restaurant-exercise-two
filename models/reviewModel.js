@@ -12,12 +12,14 @@ class ReviewModel {
         this.revivew = review;
     }
 
-    static async getAllReviewsByID() {
+    static async getAllReviewsByID(restID) {
         // get all the reviews for a given restaurant given a specific restaurant id .
         try {
             const response = await db.any(
-                `SELECT * FROM restaurant INNER JOIN review ON review.restaurant_id = restaurant.id  AND restaurant.id = 1 order by restaurant.id;`
-            );
+                `select restaurant.name , review.title , review.stars, review.review, reviewer.name 
+                from restaurant   inner join  review on restaurant.id = review.restaurant_id 
+                inner join reviewer on reviewer.id = review.reviewer_id WHERE review.restaurant_id = ${restID}`)
+            ;
             return response;
         } catch(error) {
             console.error('ERROR:', error);

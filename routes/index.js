@@ -1,6 +1,7 @@
 const express = require('express'),
   router = express.Router();
 restaurantModel = require('../models/restaurantModel');
+reviewModel = require('../models/reviewModel');
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
@@ -23,11 +24,14 @@ router.get('/', async function (req, res, next) {
 router.get('/:entry_id?', async (req, res, next) => {
   const entryId = req.params.entry_id;
   const data = await restaurantModel.getById(entryId);
+  const reviews = await reviewModel.getAllReviewsByID(entryId)
+  
   
   res.render('template', {
       locals: {
           title: 'Your Choice:',
-          data: data
+          data: data,
+          testData: reviews
       },
       partials: {
           partial: 'partial-single-entry'
@@ -35,6 +39,10 @@ router.get('/:entry_id?', async (req, res, next) => {
   });
 });
 
+router.post('/', function(req,res) {
+  console.log('req body:', req.body) ;
+  res.sendStatus(200);
+});
 module.exports = router;
 
 
