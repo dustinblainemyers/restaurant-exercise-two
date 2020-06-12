@@ -39,8 +39,11 @@ router.get('/:entry_id?', async (req, res, next) => {
   });
 });
 
-router.post('/', function(req,res) {
+router.post('/', async function(req,res) {
   console.log('req body:', req.body) ;
+  const {restaurant_id, review_title, review_text} = req.body;
+  const postData = await restaurantModel.addReview(restaurant_id, review_title, review_text);
+  console.log(postData);
   res.sendStatus(200);
 });
 module.exports = router;

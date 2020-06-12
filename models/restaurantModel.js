@@ -38,6 +38,19 @@ class RestaurantModel {
             console.error('Error', error);
         }
     }
+
+    static async addReview(r_id, review_title, review_text) {
+        try {
+            const response = await db.one(
+                `INSERT INTO review (reviewer_id, restaurant_id, title, review, stars)
+                VALUES ($1,$2,$3,$4,$5) RETURNING id`, [1, r_id, review_title, review_text,5]
+            );
+            return response;
+        } catch(error) {
+            console.log('Error:', error);
+            return error;
+        }
+    }
 }
 
 module.exports = RestaurantModel;
